@@ -1,0 +1,36 @@
+image: gradle:latest
+
+stages:
+  - build
+  - test
+  - jacoco-coverage
+  - checkstyle
+
+build:
+  stage: build
+  script:
+  - gradle assemble
+
+test:
+  stage: test
+  script:
+    - gradle test
+  artifacts:
+    paths:
+    - $CI_PROJECT_DIR/domain/build/reports/*
+
+jacoco-coverage:
+  stage: jacoco-coverage
+  script:
+    - gradle jacocoTestCoverageVerification
+  artifacts:
+    paths:
+    - $CI_PROJECT_DIR/domain/build/reports/*
+
+checkstyle:
+  stage: checkstyle
+  script:
+    - gradle check
+  artifacts:
+    paths:
+    - $CI_PROJECT_DIR/domain/build/reports/*
