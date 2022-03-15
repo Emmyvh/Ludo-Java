@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'ludo-java'
-include('app', 'domain')
+include('api', 'domain')
