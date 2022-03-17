@@ -5,17 +5,15 @@ import { StartLudo } from "./Ludo/Ludo";
 
 export function App() {
     return (
-        <Router>{ }
-            <Header />
-
-            <div className="page">
-                { }
+        < Router >
+            <div>
+                <Header />
+                <div className="page"></div>
                 <Routes>
-                    <Route path="/">
-                        <StartLudo />
-                    </Route>
+                    <Route exact path='/' component={StartLudo} />
                 </Routes>
             </div>
-        </Router>
+        </Router >
     )
+
 }
