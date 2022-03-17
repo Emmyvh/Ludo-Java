@@ -13,12 +13,13 @@ export function StartLudo() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ dice: dice })
+                body: JSON.stringify({ diceThrow: dice })
             });
+
 
             if (response.ok) {
                 const diceThrow = await response.json();
-                setDiceThrow(10);
+                setDiceThrow(diceThrow.diceThrow);
             }
 
         } catch (error) {
@@ -29,7 +30,6 @@ export function StartLudo() {
     return (
         <div>
             <button className="Dice" onClick={() => rollADice()}>{diceThrow}
-                Roll The Dice!
             </button>
         </div>
     )

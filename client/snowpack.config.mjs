@@ -1,4 +1,7 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
+
+import proxy from 'http2-proxy';
+
 export default {
     count: {
         public: '/',
@@ -17,8 +20,8 @@ export default {
         {
             src: '/api/.*',
             dest: (req, res) => {
-                req.url = req.url.replace(/^\/api\//, '/');
-
+                req.url = req.url.replace(/^\/api\//, '/ludo/api/');
+                console.log(req.url);
                 return proxy.web(req, res, {
                     hostname: 'localhost',
                     port: 8080,

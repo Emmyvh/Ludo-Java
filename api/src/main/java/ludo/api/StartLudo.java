@@ -14,10 +14,8 @@ import ludo.domain.Dice;
 public class StartLudo {
 
     @POST
-
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-
     public Response initialize(@Context HttpServletRequest request, LudoDTO dice) throws ServletException, IOException {
         var newDice = new Dice();
 

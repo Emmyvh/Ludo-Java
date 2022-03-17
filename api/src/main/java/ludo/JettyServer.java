@@ -1,15 +1,26 @@
 package ludo;
 
+import java.util.EnumSet;
+
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+import jakarta.servlet.DispatcherType;
 
 public class JettyServer {
     public static void main(String[] args) throws Exception {
         Server server = startServer(8080);
         ServletContextHandler context = createStatefulContext(server);
         registerServlets(context);
+
+        FilterHolder cors = context.addFilter(CrossOriginFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
+        cors.setInitParameter(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*");
+        cors.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_ORIGIN_HEADER, "*");
+        cors.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "GET,POST,HEAD");
+        cors.setInitParameter(CrossOriginFilter.ALLOWED_HEADERS_PARAM, "X-Requested-With,Content-Type,Accept,Origin");
 
         server.start();
         System.out.println("Started server.");

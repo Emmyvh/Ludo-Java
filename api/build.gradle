@@ -17,6 +17,7 @@ dependencies {
 
     implementation 'org.eclipse.jetty:jetty-server:+'
     implementation 'org.eclipse.jetty:jetty-servlet:+'
+    implementation 'org.eclipse.jetty:jetty-servlets:+'
     implementation 'org.eclipse.jetty:jetty-webapp:+'
 
     implementation project(':domain')
