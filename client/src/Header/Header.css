@@ -1,0 +1,26 @@
+.header {
+    background-color: white;
+    color: rgb(9, 180, 137);
+    font-family: Arial;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(3, 100, 76);;
+    font-size: 1.3rem;
+    height: 60px;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+}
+
+.header div {
+    display: flex;
+    align-items: center;
+}

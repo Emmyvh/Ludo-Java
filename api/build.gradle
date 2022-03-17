@@ -29,7 +29,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'ludo.java.StartLudo'
+    mainClass = 'ludo.JettyServer'
 }
 
 tasks.named('test') {

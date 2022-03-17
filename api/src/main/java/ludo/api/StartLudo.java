@@ -18,13 +18,13 @@ public class StartLudo {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Response initialize(HttpServletRequest request, LudoDTO dice) throws ServletException, IOException {
+    public Response initialize(@Context HttpServletRequest request, LudoDTO dice) throws ServletException, IOException {
         var newDice = new Dice();
 
         HttpSession session = request.getSession(true);
         session.setAttribute("dice", newDice);
 
-        var output = new LudoDTO();
+        var output = new LudoDTO(newDice);
         return Response.status(200).entity(output).build();
     }
 }

@@ -15,6 +15,6 @@ class StartLudoTest {
     @Test
     public void whenAGameIsStartedTheStatusIsOk() {
         var response = StartLudo();
-        assertEquals(200,response.getStatus());
+        assertEquals(200, response.getStatus());
     }
 }
