@@ -14,7 +14,7 @@ public class Dice {
     }
 
     public void setDiceThrow() {
-        diceThrow = random.nextInt(upperbound);
+        diceThrow = random.nextInt(upperbound) + 1;
     }
 
 }
