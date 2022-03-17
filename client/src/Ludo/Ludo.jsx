@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Ludo.css";
 
 export function StartLudo() {
 
-    const diceThrow = dice;
+    const [diceThrow, setDiceThrow] = useState("");
 
-    async function rollADice() {
+    async function rollADice(dice) {
         try {
-            const response = await fetch('mancala/api/start', {
+            const response = await fetch('/api/start', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -15,6 +15,11 @@ export function StartLudo() {
                 },
                 body: JSON.stringify({ dice: dice })
             });
+
+            if (response.ok) {
+                const diceThrow = await response.json();
+                setDiceThrow(10);
+            }
 
         } catch (error) {
             console.error(error.toString());

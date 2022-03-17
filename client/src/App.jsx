@@ -8,9 +8,9 @@ export function App() {
         < Router >
             <div>
                 <Header />
-                <div className="page"></div>
+                <StartLudo />
                 <Routes>
-                    <Route exact path='/' component={StartLudo} />
+                    <Route path='/' component={StartLudo} />
                 </Routes>
             </div>
         </Router >

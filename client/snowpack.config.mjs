@@ -19,10 +19,10 @@ export default {
             dest: (req, res) => {
                 req.url = req.url.replace(/^\/api\//, '/');
 
-                return null /*proxy.web(req, res, {
+                return proxy.web(req, res, {
                     hostname: 'localhost',
                     port: 8080,
-                });*/
+                });
             },
         },
     ],
