@@ -14,10 +14,19 @@ public class SquareTest {
     }
 
     @Test
-    public void whenASquareIsCreatedItHoldAPawn() {
+    public void whenASquareIsCreatedItCanHoldAPawn() {
         Square square = new Square();
-        square.setHasPawn();
+        square.addPawn();
         boolean status = square.IsOccupied();
         assertTrue(status);
+    }
+
+    @Test
+    public void whenAPawnIsMovedASquareDoesNoLongerHoldOne() {
+        Square square = new Square();
+        square.addPawn();
+        square.removePawn();
+        boolean status = square.IsOccupied();
+        assertFalse(status);
     }
 }

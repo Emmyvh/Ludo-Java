@@ -3,8 +3,12 @@ package ludo.domain;
 public class Square {
     boolean hasPawn = false;
 
-    public void setHasPawn() {
+    public void addPawn() {
         hasPawn = true;
+    }
+
+    public void removePawn() {
+        hasPawn = false;
     }
 
     public boolean IsOccupied() {
