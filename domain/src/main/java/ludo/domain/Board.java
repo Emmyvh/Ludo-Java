@@ -1,6 +1,6 @@
 package ludo.domain;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
@@ -14,6 +14,8 @@ public class Board {
     private List<Square> field;
     private int startSquareIndex;
     private int endSquareIndex;
+    private int indexOfOldSquare;
+    private int indexOfNewSquare;
 
     public Board() {
         this.dice = new Dice();
@@ -23,7 +25,10 @@ public class Board {
         this.playerFour = new Player();
         this.activePlayer = playerOne;
 
-        this.field = Collections.nCopies(40, new Square());
+        this.field = new ArrayList<>();
+        for (int i = 0; i < 40; i++) {
+            this.field.add(new Square());
+        }
     };
 
     public Player getPlayerOne() {
@@ -50,19 +55,11 @@ public class Board {
         return field;
     }
 
-    public void nextPlayer() {
-        if (activePlayer == playerOne) {
-            activePlayer = playerTwo;
-        } else if (activePlayer == playerTwo) {
-            activePlayer = playerThree;
-        } else if (activePlayer == playerThree) {
-            activePlayer = playerFour;
-        } else if (activePlayer == playerFour) {
-            activePlayer = playerOne;
-        }
+    public int getDiceThrow() {
+        return diceThrow;
     }
 
-    public int getStartSquare() {
+    public int getIndexStartSquare() {
         if (activePlayer == playerOne) {
             this.startSquareIndex = 0;
         } else if (activePlayer == playerTwo) {
@@ -75,37 +72,57 @@ public class Board {
         return startSquareIndex;
     }
 
-    public int getEndSquare() {
+    public int getIndexEndSquare() {
         if (activePlayer == playerOne) {
-            this.endSquareIndex = getStartSquare() + 39;
+            this.endSquareIndex = getIndexStartSquare() + 39;
         } else if (activePlayer == playerTwo) {
-            this.endSquareIndex = getStartSquare() + 39 - 40;
+            this.endSquareIndex = getIndexStartSquare() + 39 - 40;
         } else if (activePlayer == playerThree) {
-            this.endSquareIndex = getStartSquare() + 39 - 40;
+            this.endSquareIndex = getIndexStartSquare() + 39 - 40;
         } else if (activePlayer == playerFour) {
-            this.endSquareIndex = getStartSquare() + 39 - 40;
+            this.endSquareIndex = getIndexStartSquare() + 39 - 40;
         }
         return endSquareIndex;
     }
 
-    public int getDiceThrow() {
-        return diceThrow;
-    }
-
-    public void PlaceNewPawn() {
-        if (activePlayer.getNumberOfSquaresOccupied() < 4 && !(this.getField().get(getStartSquare()).IsOccupied())) {
-            this.getField().get(getStartSquare()).addPawn();
-            this.getActivePlayer().addPawn(getStartSquare());
+    public void nextPlayer() {
+        if (activePlayer == playerOne) {
+            activePlayer = playerTwo;
+        } else if (activePlayer == playerTwo) {
+            activePlayer = playerThree;
+        } else if (activePlayer == playerThree) {
+            activePlayer = playerFour;
+        } else if (activePlayer == playerFour) {
+            activePlayer = playerOne;
         }
     }
 
-    public void makeMovePawn(int index) {
+    public void placeNewPawn() {
+        if (activePlayer.getNumberOfSquaresOccupied() + this.activePlayer.getScore() < 4
+                && !(this.getField().get(getIndexStartSquare()).isOccupied())) {
+            this.getField().get(getIndexStartSquare()).addPawn();
+            this.getActivePlayer().addPawn(getIndexStartSquare());
+        }
+    }
+
+    public void makeMovePawn(int pawnNumber) {
         this.dice.setDiceThrow();
         diceThrow = this.dice.getDiceThrow();
+        indexOfOldSquare = getActivePlayer().getPawnList().get(pawnNumber - 1);
 
-        this.getField().get(getActivePlayer().getPawnList().get(index - 1)).removePawn();
-        this.getActivePlayer().losePawn(index - 1);
-        this.getField().get(index - 1 + diceThrow).addPawn();
+        this.getField().get(indexOfOldSquare).removePawn();
+        this.getActivePlayer().losePawn(pawnNumber - 1);
+
+        if (indexOfOldSquare + diceThrow >= getIndexEndSquare() && indexOfOldSquare < getIndexEndSquare()) {
+            this.getField().get(indexOfOldSquare).removePawn();
+            this.getActivePlayer().losePawn(indexOfOldSquare);
+            this.getActivePlayer().addPoint();
+        }
+
+        indexOfNewSquare = (indexOfOldSquare + diceThrow) % 40;
+
+        this.getField().get(indexOfNewSquare).addPawn();
+        this.getActivePlayer().getPawnList().add(pawnNumber - 1, indexOfNewSquare);
 
         if (diceThrow != 6) {
             this.nextPlayer();

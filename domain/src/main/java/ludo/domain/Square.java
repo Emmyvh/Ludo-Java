@@ -1,7 +1,7 @@
 package ludo.domain;
 
 public class Square {
-    boolean hasPawn = false;
+    private boolean hasPawn = false;
 
     public void addPawn() {
         hasPawn = true;
@@ -11,12 +11,7 @@ public class Square {
         hasPawn = false;
     }
 
-    public boolean IsOccupied() {
-        if (hasPawn) {
-            return true;
-        } else {
-            return false;
-        }
-
+    public boolean isOccupied() {
+        return hasPawn;
     }
 }

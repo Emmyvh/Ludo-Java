@@ -9,7 +9,7 @@ public class SquareTest {
     @Test
     public void whenASquareIsCreatedItDoesNotHoldAPawn() {
         Square square = new Square();
-        boolean status = square.IsOccupied();
+        boolean status = square.isOccupied();
         assertFalse(status);
     }
 
@@ -17,7 +17,7 @@ public class SquareTest {
     public void whenASquareIsCreatedItCanHoldAPawn() {
         Square square = new Square();
         square.addPawn();
-        boolean status = square.IsOccupied();
+        boolean status = square.isOccupied();
         assertTrue(status);
     }
 
@@ -26,7 +26,7 @@ public class SquareTest {
         Square square = new Square();
         square.addPawn();
         square.removePawn();
-        boolean status = square.IsOccupied();
+        boolean status = square.isOccupied();
         assertFalse(status);
     }
 }
