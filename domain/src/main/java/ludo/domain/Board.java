@@ -9,6 +9,7 @@ public class Board {
     private Player playerThree;
     private Player playerFour;
     private Player activePlayer;
+    private Player winner;
     private Dice dice;
     private int diceThrow;
     private List<Square> field;
@@ -29,7 +30,7 @@ public class Board {
         for (int i = 0; i < 40; i++) {
             this.field.add(new Square());
         }
-    };
+    }
 
     public Player getPlayerOne() {
         return playerOne;
@@ -49,6 +50,10 @@ public class Board {
 
     public Player getActivePlayer() {
         return activePlayer;
+    }
+
+    public Player getWinner() {
+        return winner;
     }
 
     public List<Square> getField() {
@@ -85,6 +90,25 @@ public class Board {
         return endSquareIndex;
     }
 
+    public void setIndexOfNewSquare(int index) {
+        indexOfNewSquare = index;
+    }
+
+    public void hitCheck() {
+        if (this.getField().get(indexOfNewSquare).isOccupied()) {
+            this.getField().get(indexOfNewSquare).removePawn();
+            if (this.getPlayerOne().getPawnList().contains(indexOfNewSquare)) {
+                this.getPlayerOne().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+            } else if (this.getPlayerTwo().getPawnList().contains(indexOfNewSquare)) {
+                this.getPlayerTwo().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+            } else if (this.getPlayerThree().getPawnList().contains(indexOfNewSquare)) {
+                this.getPlayerThree().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+            } else if (this.getPlayerFour().getPawnList().contains(indexOfNewSquare)) {
+                this.getPlayerFour().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+            }
+        }
+    }
+
     public void nextPlayer() {
         if (activePlayer == playerOne) {
             activePlayer = playerTwo;
@@ -94,6 +118,27 @@ public class Board {
             activePlayer = playerFour;
         } else if (activePlayer == playerFour) {
             activePlayer = playerOne;
+        }
+    }
+
+    public boolean endOfGameCheck() {
+        if (playerOne.getScore() == 4 || playerTwo.getScore() == 4 || playerThree.getScore() == 4
+                || playerFour.getScore() == 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void checkForWinner() {
+        if (endOfGameCheck() && playerOne.getScore() == 4) {
+            winner = playerOne;
+        } else if (endOfGameCheck() && playerTwo.getScore() == 4) {
+            winner = playerTwo;
+        } else if (endOfGameCheck() && playerThree.getScore() == 4) {
+            winner = playerThree;
+        } else if (endOfGameCheck() && playerFour.getScore() == 4) {
+            winner = playerFour;
         }
     }
 
@@ -114,17 +159,22 @@ public class Board {
         this.getActivePlayer().losePawn(pawnNumber - 1);
 
         if (indexOfOldSquare + diceThrow >= getIndexEndSquare() && indexOfOldSquare < getIndexEndSquare()) {
-            this.getField().get(indexOfOldSquare).removePawn();
-            this.getActivePlayer().losePawn(indexOfOldSquare);
             this.getActivePlayer().addPoint();
+        } else {
+            if (indexOfOldSquare + diceThrow > 39) {
+                indexOfNewSquare = indexOfOldSquare + diceThrow - 40;
+            } else
+                indexOfNewSquare = indexOfOldSquare + diceThrow;
+
+            this.hitCheck();
+
+            this.getField().get(indexOfNewSquare).addPawn();
+            this.getActivePlayer().getPawnList().add(pawnNumber - 1, indexOfNewSquare);
         }
 
-        indexOfNewSquare = (indexOfOldSquare + diceThrow) % 40;
+        this.checkForWinner();
 
-        this.getField().get(indexOfNewSquare).addPawn();
-        this.getActivePlayer().getPawnList().add(pawnNumber - 1, indexOfNewSquare);
-
-        if (diceThrow != 6) {
+        if (diceThrow != 6 && !(endOfGameCheck())) {
             this.nextPlayer();
         }
     }

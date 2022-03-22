@@ -179,11 +179,195 @@ public class BoardTest {
     public void whenAPlayerDoesNotThrowSixTheNextPlayerGetsToMove() {
         Board board = new Board();
         board.placeNewPawn();
+        assertTrue(board.getField().get(0).isOccupied());
         board.makeMovePawn(1);
+        assertFalse(board.getField().get(0).isOccupied());
+        assertTrue(board.getField().get(board.getDiceThrow()).isOccupied());
+        assertEquals(board.getDiceThrow(), board.getPlayerOne().getPawnList().get(0));
         if (board.getDiceThrow() == 6) {
             assertEquals(board.getActivePlayer(), board.getPlayerOne());
         } else {
             assertEquals(board.getActivePlayer(), board.getPlayerTwo());
         }
+    }
+
+    @Test
+    public void whenPlayerOneHasHadTheirTurnPlayerTwoGetsToMove() {
+        Board board = new Board();
+        board.placeNewPawn();
+        assertTrue(board.getField().get(0).isOccupied());
+        board.makeMovePawn(1);
+        assertFalse(board.getField().get(0).isOccupied());
+        assertTrue(board.getField().get(board.getDiceThrow()).isOccupied());
+        assertEquals(board.getDiceThrow(), board.getPlayerOne().getPawnList().get(0));
+
+        if (board.getDiceThrow() == 6) {
+            assertEquals(board.getActivePlayer(), board.getPlayerOne());
+            board.placeNewPawn();
+            board.makeMovePawn(1);
+        } else {
+            assertEquals(board.getActivePlayer(), board.getPlayerTwo());
+            board.placeNewPawn();
+            assertTrue(board.getField().get(9).isOccupied());
+            board.makeMovePawn(1);
+            assertFalse(board.getField().get(9).isOccupied());
+            assertTrue(board.getField().get(board.getDiceThrow() + 9).isOccupied());
+            assertEquals(board.getDiceThrow() + 9, board.getPlayerTwo().getPawnList().get(0));
+        }
+    }
+
+    @Test
+    public void whenAGameStartsItHasNotEnded() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+    }
+
+    @Test
+    public void whenPlayerOneHasFourPointsTheGameEnds() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getActivePlayer().addPoint();
+        board.getActivePlayer().addPoint();
+        board.getActivePlayer().addPoint();
+        board.getActivePlayer().addPoint();
+        assertTrue(board.endOfGameCheck());
+    }
+
+    @Test
+    public void whenPlayerTwoHasFourPointsTheGameEnds() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getPlayerTwo().addPoint();
+        board.getPlayerTwo().addPoint();
+        board.getPlayerTwo().addPoint();
+        board.getPlayerTwo().addPoint();
+        assertTrue(board.endOfGameCheck());
+    }
+
+    @Test
+    public void whenPlayerThreeHasFourPointsTheGameEnds() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getPlayerThree().addPoint();
+        board.getPlayerThree().addPoint();
+        board.getPlayerThree().addPoint();
+        board.getPlayerThree().addPoint();
+        assertTrue(board.endOfGameCheck());
+    }
+
+    @Test
+    public void whenPlayerFourHasFourPointsTheGameEnds() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getPlayerFour().addPoint();
+        board.getPlayerFour().addPoint();
+        board.getPlayerFour().addPoint();
+        board.getPlayerFour().addPoint();
+        assertTrue(board.endOfGameCheck());
+    }
+
+    @Test
+    public void whenAGameEndsPlayerOneWins() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getActivePlayer().addPoint();
+        board.getActivePlayer().addPoint();
+        board.getActivePlayer().addPoint();
+        assertEquals(3, board.getPlayerOne().getScore());
+
+        board.getField().get(38).addPawn();
+        board.getActivePlayer().addPawn(38);
+        assertTrue(board.getField().get(38).isOccupied());
+        board.makeMovePawn(1);
+        assertFalse(board.getField().get(38).isOccupied());
+        assertEquals(4, board.getPlayerOne().getScore());
+
+        assertTrue(board.endOfGameCheck());
+        assertEquals(board.getPlayerOne(), board.getActivePlayer());
+        assertEquals(board.getPlayerOne(), board.getWinner());
+    }
+
+    @Test
+    public void whenAGameEndsPlayerTwoWins() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getPlayerTwo().addPoint();
+        board.getPlayerTwo().addPoint();
+        board.getPlayerTwo().addPoint();
+        assertEquals(3, board.getPlayerTwo().getScore());
+
+        board.nextPlayer();
+        board.getField().get(7).addPawn();
+        board.getActivePlayer().addPawn(7);
+        assertTrue(board.getField().get(7).isOccupied());
+        board.makeMovePawn(1);
+        assertFalse(board.getField().get(7).isOccupied());
+        assertEquals(4, board.getPlayerTwo().getScore());
+
+        assertTrue(board.endOfGameCheck());
+        assertEquals(board.getPlayerTwo(), board.getActivePlayer());
+        assertEquals(board.getPlayerTwo(), board.getWinner());
+    }
+
+    @Test
+    public void whenAGameEndsPlayerThreeWins() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getPlayerThree().addPoint();
+        board.getPlayerThree().addPoint();
+        board.getPlayerThree().addPoint();
+        assertEquals(3, board.getPlayerThree().getScore());
+
+        board.nextPlayer();
+        board.nextPlayer();
+        board.getField().get(17).addPawn();
+        board.getActivePlayer().addPawn(17);
+        assertTrue(board.getField().get(17).isOccupied());
+        board.makeMovePawn(1);
+        assertFalse(board.getField().get(17).isOccupied());
+        assertEquals(4, board.getPlayerThree().getScore());
+
+        assertTrue(board.endOfGameCheck());
+        assertEquals(board.getPlayerThree(), board.getActivePlayer());
+        assertEquals(board.getPlayerThree(), board.getWinner());
+    }
+
+    @Test
+    public void whenAGameEndsPlayerFourWins() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getPlayerFour().addPoint();
+        board.getPlayerFour().addPoint();
+        board.getPlayerFour().addPoint();
+        assertEquals(3, board.getPlayerFour().getScore());
+
+        board.nextPlayer();
+        board.nextPlayer();
+        board.nextPlayer();
+        board.getField().get(27).addPawn();
+        board.getActivePlayer().addPawn(27);
+        assertTrue(board.getField().get(27).isOccupied());
+        board.makeMovePawn(1);
+        assertFalse(board.getField().get(27).isOccupied());
+        assertEquals(4, board.getPlayerFour().getScore());
+
+        assertTrue(board.endOfGameCheck());
+        assertEquals(board.getPlayerFour(), board.getActivePlayer());
+        assertEquals(board.getPlayerFour(), board.getWinner());
+    }
+
+    @Test
+    public void whenASquareIsAlreadyOccupiedThePreviousPawnGetsRemoved() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getField().get(6).addPawn();
+        board.getPlayerTwo().addPawn(6);
+        assertTrue(board.getField().get(6).isOccupied());
+        assertEquals(6, board.getPlayerTwo().getPawnList().get(0));
+
+        board.setIndexOfNewSquare(6);
+        board.hitCheck();
+        assertFalse(board.getField().get(6).isOccupied());
+        assertThrows(IndexOutOfBoundsException.class, () -> board.getPlayerTwo().getPawnList().get(0));
     }
 }
