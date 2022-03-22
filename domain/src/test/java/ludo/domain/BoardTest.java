@@ -110,8 +110,8 @@ public class BoardTest {
         Board board = new Board();
         board.getActivePlayer().addPawn(0);
         board.getActivePlayer().addPawn(5);
-        assertEquals(0, board.getActivePlayer().getPawnList().get(0));
-        assertEquals(5, board.getActivePlayer().getPawnList().get(1));
+        assertEquals(0, board.getActivePawnList().get(0));
+        assertEquals(5, board.getActivePawnList().get(1));
     }
 
     @Test
@@ -119,7 +119,7 @@ public class BoardTest {
         Board board = new Board();
         board.placeNewPawn();
         assertTrue(board.getField().get(0).isOccupied());
-        assertEquals(0, board.getActivePlayer().getPawnList().get(0));
+        assertEquals(0, board.getActivePawnList().get(0));
     }
 
     @Test
@@ -128,7 +128,7 @@ public class BoardTest {
         board.placeNewPawn();
         board.placeNewPawn();
         assertTrue(board.getField().get(0).isOccupied());
-        assertEquals(0, board.getActivePlayer().getPawnList().get(0));
+        assertEquals(0, board.getActivePawnList().get(0));
         assertThrows(IndexOutOfBoundsException.class, () -> board.getActivePlayer().getPawnList().get(1));
     }
 
@@ -173,6 +173,18 @@ public class BoardTest {
         board.makeMovePawn(1);
         assertFalse(board.getField().get(38).isOccupied());
         assertEquals(1, board.getPlayerOne().getScore());
+    }
+
+    @Test
+    public void whenPlayerTwoPassesSquareThirtyNineTheSquareIndexIsReduced() {
+        Board board = new Board();
+        board.nextPlayer();
+        board.getField().get(38).addPawn();
+        board.getActivePlayer().addPawn(38);
+        assertTrue(board.getField().get(38).isOccupied());
+        assertEquals(38, board.getPlayerTwo().getPawnList().get(0));
+        board.makeMovePawn(1);
+        assertTrue(board.getField().get(38 + board.getDiceThrow() - 40).isOccupied());
     }
 
     @Test
@@ -357,7 +369,7 @@ public class BoardTest {
     }
 
     @Test
-    public void whenASquareIsAlreadyOccupiedThePreviousPawnGetsRemoved() {
+    public void whenASquareIsOccupiedByPlayerTwoTheirPawnCanBeRemoved() {
         Board board = new Board();
         assertFalse(board.endOfGameCheck());
         board.getField().get(6).addPawn();
@@ -367,7 +379,48 @@ public class BoardTest {
 
         board.setIndexOfNewSquare(6);
         board.hitCheck();
-        assertFalse(board.getField().get(6).isOccupied());
         assertThrows(IndexOutOfBoundsException.class, () -> board.getPlayerTwo().getPawnList().get(0));
+    }
+
+    @Test
+    public void whenASquareIsOccupiedByPlayerThreeTheirPawnCanBeRemoved() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getField().get(6).addPawn();
+        board.getPlayerThree().addPawn(6);
+        assertTrue(board.getField().get(6).isOccupied());
+        assertEquals(6, board.getPlayerThree().getPawnList().get(0));
+
+        board.setIndexOfNewSquare(6);
+        board.hitCheck();
+        assertThrows(IndexOutOfBoundsException.class, () -> board.getPlayerThree().getPawnList().get(0));
+    }
+
+    @Test
+    public void whenASquareIsOccupiedByPlayerFourTheirPawnCanBeRemoved() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getField().get(6).addPawn();
+        board.getPlayerFour().addPawn(6);
+        assertTrue(board.getField().get(6).isOccupied());
+        assertEquals(6, board.getPlayerFour().getPawnList().get(0));
+
+        board.setIndexOfNewSquare(6);
+        board.hitCheck();
+        assertThrows(IndexOutOfBoundsException.class, () -> board.getPlayerFour().getPawnList().get(0));
+    }
+
+    @Test
+    public void whenASquareIsOccupiedByPlayerOneTheirPawnCanBeRemoved() {
+        Board board = new Board();
+        assertFalse(board.endOfGameCheck());
+        board.getField().get(6).addPawn();
+        board.getPlayerOne().addPawn(6);
+        assertTrue(board.getField().get(6).isOccupied());
+        assertEquals(6, board.getPlayerOne().getPawnList().get(0));
+
+        board.setIndexOfNewSquare(6);
+        board.hitCheck();
+        assertThrows(IndexOutOfBoundsException.class, () -> board.getPlayerOne().getPawnList().get(0));
     }
 }

@@ -60,7 +60,12 @@ public class Board {
         return field;
     }
 
+    public List<Integer> getActivePawnList() {
+        return this.getActivePlayer().getPawnList();
+    }
+
     public int getDiceThrow() {
+        diceThrow = this.dice.getDiceThrow();
         return diceThrow;
     }
 
@@ -94,18 +99,53 @@ public class Board {
         indexOfNewSquare = index;
     }
 
-    public void hitCheck() {
-        if (this.getField().get(indexOfNewSquare).isOccupied()) {
-            this.getField().get(indexOfNewSquare).removePawn();
-            if (this.getPlayerOne().getPawnList().contains(indexOfNewSquare)) {
-                this.getPlayerOne().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
-            } else if (this.getPlayerTwo().getPawnList().contains(indexOfNewSquare)) {
-                this.getPlayerTwo().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
-            } else if (this.getPlayerThree().getPawnList().contains(indexOfNewSquare)) {
-                this.getPlayerThree().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
-            } else if (this.getPlayerFour().getPawnList().contains(indexOfNewSquare)) {
-                this.getPlayerFour().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+    public void removeOldPawn(int pawnNumber) {
+        this.getField().get(indexOfOldSquare).removePawn();
+        this.getActivePlayer().losePawn(pawnNumber - 1);
+    }
+
+    public void pointCheck(int pawnNumber) {
+        if (indexOfOldSquare + diceThrow >= getIndexEndSquare() && indexOfOldSquare < getIndexEndSquare()) {
+            this.getActivePlayer().addPoint();
+        } else {
+            if (indexOfOldSquare + diceThrow > 39) {
+                indexOfNewSquare = indexOfOldSquare + diceThrow - 40;
+            } else {
+                indexOfNewSquare = indexOfOldSquare + diceThrow;
             }
+
+            this.hitCheck();
+
+            this.returnPawn(pawnNumber);
+        }
+    }
+
+    public void hitCheck() {
+        if (this.getPlayerOne().getPawnList().contains(indexOfNewSquare)) {
+            this.getPlayerOne().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+        } else if (this.getPlayerTwo().getPawnList().contains(indexOfNewSquare)) {
+            this.getPlayerTwo().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+        } else if (this.getPlayerThree().getPawnList().contains(indexOfNewSquare)) {
+            this.getPlayerThree().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+        } else if (this.getPlayerFour().getPawnList().contains(indexOfNewSquare)) {
+            this.getPlayerFour().getPawnList().remove(Integer.valueOf(indexOfNewSquare));
+        }
+    }
+
+    public void returnPawn(int pawnNumber) {
+        this.getField().get(indexOfNewSquare).addPawn();
+        this.getActivePawnList().add(pawnNumber - 1, indexOfNewSquare);
+    }
+
+    public void checkForWinner() {
+        if (playerOne.getScore() == 4) {
+            winner = playerOne;
+        } else if (playerTwo.getScore() == 4) {
+            winner = playerTwo;
+        } else if (playerThree.getScore() == 4) {
+            winner = playerThree;
+        } else if (playerFour.getScore() == 4) {
+            winner = playerFour;
         }
     }
 
@@ -130,18 +170,6 @@ public class Board {
         }
     }
 
-    public void checkForWinner() {
-        if (endOfGameCheck() && playerOne.getScore() == 4) {
-            winner = playerOne;
-        } else if (endOfGameCheck() && playerTwo.getScore() == 4) {
-            winner = playerTwo;
-        } else if (endOfGameCheck() && playerThree.getScore() == 4) {
-            winner = playerThree;
-        } else if (endOfGameCheck() && playerFour.getScore() == 4) {
-            winner = playerFour;
-        }
-    }
-
     public void placeNewPawn() {
         if (activePlayer.getNumberOfSquaresOccupied() + this.activePlayer.getScore() < 4
                 && !(this.getField().get(getIndexStartSquare()).isOccupied())) {
@@ -152,25 +180,12 @@ public class Board {
 
     public void makeMovePawn(int pawnNumber) {
         this.dice.setDiceThrow();
-        diceThrow = this.dice.getDiceThrow();
-        indexOfOldSquare = getActivePlayer().getPawnList().get(pawnNumber - 1);
+        this.getDiceThrow();
+        indexOfOldSquare = getActivePawnList().get(pawnNumber - 1);
 
-        this.getField().get(indexOfOldSquare).removePawn();
-        this.getActivePlayer().losePawn(pawnNumber - 1);
+        this.removeOldPawn(pawnNumber);
 
-        if (indexOfOldSquare + diceThrow >= getIndexEndSquare() && indexOfOldSquare < getIndexEndSquare()) {
-            this.getActivePlayer().addPoint();
-        } else {
-            if (indexOfOldSquare + diceThrow > 39) {
-                indexOfNewSquare = indexOfOldSquare + diceThrow - 40;
-            } else
-                indexOfNewSquare = indexOfOldSquare + diceThrow;
-
-            this.hitCheck();
-
-            this.getField().get(indexOfNewSquare).addPawn();
-            this.getActivePlayer().getPawnList().add(pawnNumber - 1, indexOfNewSquare);
-        }
+        this.pointCheck(pawnNumber);
 
         this.checkForWinner();
 
