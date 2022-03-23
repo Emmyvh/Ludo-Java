@@ -1,22 +1,22 @@
 package ludo.api.models;
 
+import ludo.domain.Board;
+
 public class LudoDTO {
 
-    public int diceThrow;
+    public Board newBoard;
+    public GameStatusDTO gameStatus;
 
-    public LudoDTO() {
+    public LudoDTO(ludo.domain.Board board) {
+        newBoard = board;
+        gameStatus = new GameStatusDTO(board);
     }
 
-    public LudoDTO(ludo.domain.Dice dice) {
-        dice.setDiceThrow();
-        diceThrow = dice.getDiceThrow();
+    public Board getNewBoard() {
+        return newBoard;
     }
 
-    public int getDiceThrow() {
-        return diceThrow;
-    }
-
-    public void setDiceThrow(int diceThrow) {
-        this.diceThrow = diceThrow;
+    public GameStatusDTO getGameStatus() {
+        return gameStatus;
     }
 }

@@ -1,10 +1,114 @@
-.Dice {
+.controls{
+    display: flex;
+    margin-left: 10%;
+    border-width: 2em;
+    border-color: black;
+}
+
+.dice {
     background-color: rgb(153, 76, 76);
-    padding:5%;
+    padding:60px;
     margin-left:10%;
     border-radius: 25%;
     border-color: rgb(153, 76, 76);
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: white;
+}
+
+.addPawn {
+    background-color: white;
+    padding-top:30px;
+    padding-bottom: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left:5%;
+    border-radius: 25%;
+    border-color: rgb(153, 76, 76);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Black;
+}
+
+.movePawn {
+    background-color: white;
+    padding-top:30px;
+    padding-bottom: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left:5%;
+    border-radius: 25%;
+    border-color: rgb(153, 76, 76);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Blacke;
+}
+
+.textBox {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding:1%;
+    border-radius: 12px;
+    border-color: Black;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Black;
+}
+
+.board{
+    display: flex;
+    margin-left: 10%;
+    border-width: 2em;
+    border-color: black;
+}
+
+.startSquareOne {
+    background-color: rgb(153, 76, 76);
+    padding:1%;
+    margin-left:1%;
+    border-radius: 50%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Black;
+}
+
+.startSquareTwo {
+    background-color: rgb(122, 173, 231);
+    padding:1%;
+    margin-left:1%;
+    border-radius: 50%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Black;
+}
+
+.startSquareThree {
+    background-color: rgb(9, 180, 137);
+    padding:1%;
+    margin-left:1%;
+    border-radius: 50%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Black;
+}
+
+.startSquareFour {
+    background-color: rgb(184, 176, 109);
+    padding:1%;
+    margin-left:1%;
+    border-radius: 50%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Black;
+}
+
+.square {
+    background-color: rgb(231, 220, 122);
+    padding:1%;
+    margin-left:1%;
+    border-radius: 50%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Black;
 }

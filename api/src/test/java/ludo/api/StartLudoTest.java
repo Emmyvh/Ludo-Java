@@ -11,6 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.ws.rs.core.*;
 
 import ludo.api.models.*;
+import ludo.domain.Board;
 
 class StartLudoTest {
 
@@ -19,6 +20,8 @@ class StartLudoTest {
         var response = startLudo();
         assertEquals(200, response.getStatus());
     }
+
+    private static final Board board = new Board();
 
     private Response startLudo() throws ServletException, IOException {
         var servlet = new StartLudo();
@@ -38,8 +41,8 @@ class StartLudoTest {
     }
 
     private LudoDTO input() {
-        var input = new LudoDTO();
-        input.getDiceThrow();
+        var input = new LudoDTO(board);
+        input.getGameStatus();
         return input;
     }
 }

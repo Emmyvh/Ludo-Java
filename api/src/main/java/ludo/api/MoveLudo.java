@@ -10,20 +10,21 @@ import jakarta.ws.rs.core.*;
 import ludo.api.models.*;
 import ludo.domain.Board;
 
-@Path("/start")
-public class StartLudo {
+@Path("/move")
+public class MoveLudo {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response initialize(@Context HttpServletRequest request, LudoDTO board)
+    public Response initialize(@Context HttpServletRequest request, MoveDTO move)
             throws ServletException, IOException {
-        var newBoard = new Board();
 
         HttpSession session = request.getSession(true);
-        session.setAttribute("board", newBoard);
+        Board board = (Board) session.getAttribute("board");
 
-        var output = new LudoDTO(newBoard);
+        board.makeMovePawn(move.getIndex());
+
+        var output = new LudoDTO(board);
         return Response.status(200).entity(output).build();
     }
 }
