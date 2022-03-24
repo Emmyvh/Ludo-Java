@@ -19,7 +19,7 @@ public class PlaceLudo {
     public Response initialize(@Context HttpServletRequest request)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         Board board = (Board) session.getAttribute("board");
 
         board.placeNewPawn();

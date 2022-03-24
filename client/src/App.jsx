@@ -10,7 +10,7 @@ export function App() {
                 <Header />
                 <PlayLudo />
                 <Routes>
-                    <Route path='/' component={PlayLudo} />
+                    <Route path='/' element={PlayLudo} />
                 </Routes>
             </div>
         </Router >

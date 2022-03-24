@@ -1,14 +1,25 @@
-.controls{
+.controls {
     display: flex;
+    align-content: center;
+    padding: 10px;
+    margin-top: 2%;
     margin-left: 10%;
-    border-width: 2em;
-    border-color: black;
+    margin-right: 10%;
+    border: 6px solid rgb(3, 100, 76);
+    border-radius: 0%;
+}
+
+.box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .dice {
     background-color: rgb(153, 76, 76);
     padding:60px;
-    margin-left:10%;
+    margin-left:5%;
     border-radius: 25%;
     border-color: rgb(153, 76, 76);
     font-family:Arial, Helvetica, sans-serif;
@@ -16,12 +27,25 @@
     color: white;
 }
 
+.startGame {
+    background-color: rgb(9, 180, 137);
+    padding-top:30px;
+    padding-bottom: 30px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left:5%;
+    border-radius: 25%;
+    border-color: rgb(9, 180, 137);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: white;
+}
 .addPawn {
     background-color: white;
     padding-top:30px;
     padding-bottom: 30px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
     margin-left:5%;
     border-radius: 25%;
     border-color: rgb(153, 76, 76);
@@ -34,14 +58,14 @@
     background-color: white;
     padding-top:30px;
     padding-bottom: 30px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
     margin-left:5%;
     border-radius: 25%;
     border-color: rgb(153, 76, 76);
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
-    color: Blacke;
+    color: Black;
 }
 
 .textBox {
@@ -56,17 +80,9 @@
     color: Black;
 }
 
-.board{
-    display: flex;
-    margin-left: 10%;
-    border-width: 2em;
-    border-color: black;
-}
-
 .startSquareOne {
     background-color: rgb(153, 76, 76);
     padding:1%;
-    margin-left:1%;
     border-radius: 50%;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
@@ -75,8 +91,7 @@
 
 .startSquareTwo {
     background-color: rgb(122, 173, 231);
-    padding:1%;
-    margin-left:1%;
+    padding:19px;
     border-radius: 50%;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
@@ -85,8 +100,7 @@
 
 .startSquareThree {
     background-color: rgb(9, 180, 137);
-    padding:1%;
-    margin-left:1%;
+    padding:19px;
     border-radius: 50%;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
@@ -95,8 +109,7 @@
 
 .startSquareFour {
     background-color: rgb(184, 176, 109);
-    padding:1%;
-    margin-left:1%;
+    padding:19px;
     border-radius: 50%;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
@@ -105,10 +118,16 @@
 
 .square {
     background-color: rgb(231, 220, 122);
-    padding:1%;
-    margin-left:1%;
+    padding:19px;
     border-radius: 50%;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
+}
+
+.filler {
+    padding:28px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: white;
 }

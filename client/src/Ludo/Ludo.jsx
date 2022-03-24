@@ -4,7 +4,7 @@ import "./Ludo.css";
 export function PlayLudo() {
 
     // These are the import statements for the JSon information
-    const [newBoard, setnewBoard] = useState(0);
+    const [newBoard, setNewBoard] = useState(0);
     const [activePlayer, setActivePlayer] = useState(0);
     const [gameState, setGameStatus] = useState(0);
 
@@ -23,7 +23,7 @@ export function PlayLudo() {
                 const newBoard = await response.json();
                 setNewBoard(newBoard);
                 const activePlayer = await response.json();
-                setNewBoard(newBoard.activePlayer);
+                setActivePlayer(newBoard.activePlayer);
                 const gameState = await response.json();
                 setGameStatus(gameState);
             }
@@ -66,7 +66,6 @@ export function PlayLudo() {
     }
 
     // Here the variables are declared for the HTML return statement.
-
     var diceThrow = newBoard.diceThrow;
 
     var activePlayerName;
@@ -88,65 +87,116 @@ export function PlayLudo() {
     // The layout of the board.
     return (
         <div>
-            <class className="controls">
-                <class className="dice" >{diceThrow}</class>
-                <button className="addPawn" onClick={() => PlacePawn()}>Place new pawn</button>
+
+
+            <div className="controls">
+                <button className="startGame" onClick={() => StartLudo()}>(re)start Game</button>
+                <div className="dice" >{diceThrow}</div>
+                <button className="addPawn" onClick={() => PlacePawn()}>Place a pawn</button>
                 <button className="movePawn" onClick={() => MovePawn(1)}>Move Pawn 1</button>
                 <button className="movePawn" onClick={() => MovePawn(2)}>Move Pawn 2</button>
                 <button className="movePawn" onClick={() => MovePawn(3)}>Move pawn 3</button>
                 <button className="movePawn" onClick={() => MovePawn(4)}>move pawn 4</button>
-            </class>
+            </div>
 
-            <class className="textBox">The current player is: {activePlayerName}</class>
-            <class className="textBox">Your pawns are at the following locations:{pawnList} </class>
-            <class className="textBox">The winner is: {winner} </class>
 
-            <class className="board">
-                <class className="startSquareOne">01</class>
-                <class className="square">02</class>
-                <class className="square">03</class>
-                <class className="square">04</class>
-                <class className="square">05</class>
-                <class className="square">06</class>
-                <class className="square">07</class>
-                <class className="square">08</class>
-                <class className="square">09</class>
-                <class className="square">10</class>
-                <class className="startSquareTwo">11</class>
-                <class className="square">12</class>
-                <class className="square">13</class>
-                <class className="square">14</class>
-                <class className="square">15</class>
-                <class className="square">16</class>
-                <class className="square">17</class>
-                <class className="square">18</class>
-                <class className="square">19</class>
-                <class className="square">20</class>
-            </class>
+            <div className="textBox">The current player is: {activePlayerName}</div>
+            <div className="textBox">Your pawns are at the following locations:{pawnList} </div>
 
-            <class className="board">
-                <class className="startSquareThree">21</class>
-                <class className="square">22</class>
-                <class className="square">23</class>
-                <class className="square">24</class>
-                <class className="square">25</class>
-                <class className="square">26</class>
-                <class className="square">27</class>
-                <class className="square">28</class>
-                <class className="square">29</class>
-                <class className="square">30</class>
-                <class className="startSquareFour">31</class>
-                <class className="square">32</class>
-                <class className="square">33</class>
-                <class className="square">34</class>
-                <class className="square">35</class>
-                <class className="square">36</class>
-                <class className="square">37</class>
-                <class className="square">38</class>
-                <class className="square">39</class>
-                <class className="square">40</class>
-            </class>
+            <div className="box">
+                <div className="startSquareTwo">11</div>
+                <div className="square">12</div>
+                <div className="square">13</div>
+            </div>
 
-        </div>
+            <div className="box">
+                <div className="square">10</div>
+                <div className="filler"></div>
+                <div className="square">14</div>
+            </div>
+
+            <div className="box">
+                <div className="square">09</div>
+                <div className="filler"></div>
+                <div className="square">15</div>
+            </div>
+
+            <div className="box">
+                <div className="square">08</div>
+                <div className="filler"></div>
+                <div className="square">16</div>
+            </div>
+
+            <div className="box">
+                <div className="square">03</div>
+                <div className="square">04</div>
+                <div className="square">05</div>
+                <div className="square">06</div>
+                <div className="square">07</div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="square">17</div>
+                <div className="square">18</div>
+                <div className="square">19</div>
+                <div className="square">20</div>
+                <div className="startSquareThree">21</div>
+            </div>
+
+            <div className="box">
+                <div className="square">02</div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="square">22</div>
+            </div>
+
+            <div className="box">
+                <div className="startSquareOne">01</div>
+                <div className="square">40</div>
+                <div className="square">39</div>
+                <div className="square">38</div>
+                <div className="square">37</div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="filler"></div>
+                <div className="square">27</div>
+                <div className="square">26</div>
+                <div className="square">25</div>
+                <div className="square">24</div>
+                <div className="square">23</div>
+            </div>
+
+            <div className="box">
+                <div className="square">36</div>
+                <div className="filler"></div>
+                <div className="square">28</div>
+            </div>
+            <div className="box">
+                <div className="square">35</div>
+                <div className="filler"></div>
+                <div className="square">29</div>
+            </div>
+
+            <div className="box">
+                <div className="square">34</div>
+                <div className="filler"></div>
+                <div className="square">30</div>
+            </div>
+
+            <div className="box">
+                <div className="square">33</div>
+                <div className="square">32</div>
+                <div className="startSquareFour">31</div>
+            </div>
+        </div >
     )
 }
