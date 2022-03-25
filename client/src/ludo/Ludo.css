@@ -13,12 +13,11 @@
     display:flex;
     align-items: center;
     justify-content: center;
-    display: flex;
 }
 
 .dice {
     background-color: rgb(153, 76, 76);
-    padding:60px;
+    padding:10px;
     margin-left:5%;
     border-radius: 25%;
     border-color: rgb(153, 76, 76);
@@ -27,12 +26,12 @@
     color: white;
 }
 
-.startGame {
+.startOver {
     background-color: rgb(9, 180, 137);
     padding-top:30px;
     padding-bottom: 30px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 14px;
+    padding-right: 14px;
     margin-left:5%;
     border-radius: 25%;
     border-color: rgb(9, 180, 137);
@@ -40,12 +39,13 @@
     font-size: 1em;
     color: white;
 }
+
 .addPawn {
     background-color: white;
     padding-top:30px;
     padding-bottom: 30px;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 14px;
+    padding-right: 14px;
     margin-left:5%;
     border-radius: 25%;
     border-color: rgb(153, 76, 76);
@@ -58,8 +58,8 @@
     background-color: white;
     padding-top:30px;
     padding-bottom: 30px;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 14px;
+    padding-right: 14px;
     margin-left:5%;
     border-radius: 25%;
     border-color: rgb(153, 76, 76);
@@ -125,8 +125,31 @@
     color: Black;
 }
 
+.occupied {
+    background-color: white;
+    padding:1%;
+    border-radius: 50%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: Black;
+}
+
 .filler {
     padding:28px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: white;
+}
+
+.startGame {
+    background-color: rgb(9, 180, 137);
+    padding-top:50px;
+    padding-bottom: 50px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-left:45%;
+    border-radius: 25%;
+    border-color: rgb(9, 180, 137);
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: white;

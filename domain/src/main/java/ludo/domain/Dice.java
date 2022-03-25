@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Dice {
 
-    private int diceThrow;
+    private int diceThrow = 1;
     private final int upperbound = 6;
 
     private Random random = new Random();

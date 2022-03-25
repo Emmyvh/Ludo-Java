@@ -73,11 +73,11 @@ public class Board {
         if (activePlayer == playerOne) {
             this.startSquareIndex = 0;
         } else if (activePlayer == playerTwo) {
-            this.startSquareIndex = 9;
+            this.startSquareIndex = 10;
         } else if (activePlayer == playerThree) {
-            this.startSquareIndex = 19;
+            this.startSquareIndex = 20;
         } else if (activePlayer == playerFour) {
-            this.startSquareIndex = 29;
+            this.startSquareIndex = 30;
         }
         return startSquareIndex;
     }

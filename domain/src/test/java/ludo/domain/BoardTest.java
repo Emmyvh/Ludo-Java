@@ -55,7 +55,7 @@ public class BoardTest {
     public void whenPlayerTwoIsActiveStartSquareIsIndexNine() {
         Board board = new Board();
         board.nextPlayer();
-        assertEquals(9, board.getIndexStartSquare());
+        assertEquals(10, board.getIndexStartSquare());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class BoardTest {
         Board board = new Board();
         board.nextPlayer();
         board.nextPlayer();
-        assertEquals(19, board.getIndexStartSquare());
+        assertEquals(20, board.getIndexStartSquare());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class BoardTest {
         board.nextPlayer();
         board.nextPlayer();
         board.nextPlayer();
-        assertEquals(29, board.getIndexStartSquare());
+        assertEquals(30, board.getIndexStartSquare());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class BoardTest {
     public void whenPlayerTwoIsActiveEndSquareIsIndexEight() {
         Board board = new Board();
         board.nextPlayer();
-        assertEquals(8, board.getIndexEndSquare());
+        assertEquals(9, board.getIndexEndSquare());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class BoardTest {
         Board board = new Board();
         board.nextPlayer();
         board.nextPlayer();
-        assertEquals(18, board.getIndexEndSquare());
+        assertEquals(19, board.getIndexEndSquare());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class BoardTest {
         board.nextPlayer();
         board.nextPlayer();
         board.nextPlayer();
-        assertEquals(28, board.getIndexEndSquare());
+        assertEquals(29, board.getIndexEndSquare());
     }
 
     @Test
@@ -220,11 +220,11 @@ public class BoardTest {
         } else {
             assertEquals(board.getActivePlayer(), board.getPlayerTwo());
             board.placeNewPawn();
-            assertTrue(board.getField().get(9).isOccupied());
+            assertTrue(board.getField().get(10).isOccupied());
             board.makeMovePawn(1);
-            assertFalse(board.getField().get(9).isOccupied());
-            assertTrue(board.getField().get(board.getDiceThrow() + 9).isOccupied());
-            assertEquals(board.getDiceThrow() + 9, board.getPlayerTwo().getPawnList().get(0));
+            assertFalse(board.getField().get(10).isOccupied());
+            assertTrue(board.getField().get(board.getDiceThrow() + 10).isOccupied());
+            assertEquals(board.getDiceThrow() + 10, board.getPlayerTwo().getPawnList().get(0));
         }
     }
 
@@ -309,11 +309,11 @@ public class BoardTest {
         assertEquals(3, board.getPlayerTwo().getScore());
 
         board.nextPlayer();
-        board.getField().get(7).addPawn();
-        board.getActivePlayer().addPawn(7);
-        assertTrue(board.getField().get(7).isOccupied());
+        board.getField().get(8).addPawn();
+        board.getActivePlayer().addPawn(8);
+        assertTrue(board.getField().get(8).isOccupied());
         board.makeMovePawn(1);
-        assertFalse(board.getField().get(7).isOccupied());
+        assertFalse(board.getField().get(8).isOccupied());
         assertEquals(4, board.getPlayerTwo().getScore());
 
         assertTrue(board.endOfGameCheck());
@@ -332,11 +332,11 @@ public class BoardTest {
 
         board.nextPlayer();
         board.nextPlayer();
-        board.getField().get(17).addPawn();
-        board.getActivePlayer().addPawn(17);
-        assertTrue(board.getField().get(17).isOccupied());
+        board.getField().get(18).addPawn();
+        board.getActivePlayer().addPawn(18);
+        assertTrue(board.getField().get(18).isOccupied());
         board.makeMovePawn(1);
-        assertFalse(board.getField().get(17).isOccupied());
+        assertFalse(board.getField().get(18).isOccupied());
         assertEquals(4, board.getPlayerThree().getScore());
 
         assertTrue(board.endOfGameCheck());
@@ -356,11 +356,11 @@ public class BoardTest {
         board.nextPlayer();
         board.nextPlayer();
         board.nextPlayer();
-        board.getField().get(27).addPawn();
-        board.getActivePlayer().addPawn(27);
-        assertTrue(board.getField().get(27).isOccupied());
+        board.getField().get(28).addPawn();
+        board.getActivePlayer().addPawn(28);
+        assertTrue(board.getField().get(28).isOccupied());
         board.makeMovePawn(1);
-        assertFalse(board.getField().get(27).isOccupied());
+        assertFalse(board.getField().get(28).isOccupied());
         assertEquals(4, board.getPlayerFour().getScore());
 
         assertTrue(board.endOfGameCheck());

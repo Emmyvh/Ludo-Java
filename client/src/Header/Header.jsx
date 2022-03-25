@@ -7,7 +7,8 @@ export function Header() {
         <header className="header">
             <div>Ludo</div>
             <div className="navigation">
-                <Link to="/">Play Ludo</Link>
+                <Link to="/">Home</Link>
+                <Link to="/PlayLudo">Play Ludo</Link>
             </div>
         </header>)
 }
