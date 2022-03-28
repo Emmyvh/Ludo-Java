@@ -6,12 +6,10 @@ import java.util.List;
 public class Player {
 
     private int score;
-    private int numberOfSquaresOccupied;
     private List<Integer> indexListSquaresOccupied;
 
     public Player() {
         this.score = 0;
-        this.numberOfSquaresOccupied = 0;
         this.indexListSquaresOccupied = new ArrayList<Integer>();
     }
 
@@ -24,21 +22,15 @@ public class Player {
     }
 
     public void addPawn(int index) {
-        if (numberOfSquaresOccupied + score < 4) {
-            numberOfSquaresOccupied++;
-            indexListSquaresOccupied.add(index);
+        if (indexListSquaresOccupied.size() + score < 4) {
+            indexListSquaresOccupied.add(Integer.valueOf(index));
         }
     }
 
     public void losePawn(int index) {
-        if (numberOfSquaresOccupied + score > 0) {
-            numberOfSquaresOccupied--;
-            indexListSquaresOccupied.remove(index);
+        if (indexListSquaresOccupied.size() > 0) {
+            indexListSquaresOccupied.remove(Integer.valueOf(index));
         }
-    }
-
-    public int getNumberOfSquaresOccupied() {
-        return numberOfSquaresOccupied;
     }
 
     public List<Integer> getPawnList() {

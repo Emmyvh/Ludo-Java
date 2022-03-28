@@ -6,6 +6,10 @@ import Three from "./three.png";
 import Four from "./four.png";
 import Five from "./five.png";
 import Six from "./six.png";
+import PawnOne from "./PawnOne.png";
+import PawnTwo from "./PawnTwo.png";
+import PawnThree from "./PawnThree.png";
+import PawnFour from "./PawnFour.png";
 
 export function PlayLudo() {
 
@@ -82,11 +86,15 @@ export function PlayLudo() {
         }
     }
 
-    function diceImage() {
+    function DiceImage() {
         if (newBoard) {
             let list = [One, Two, Three, Four, Five, Six]
             return list[newBoard.diceThrow - 1]
         }
+    }
+
+    function winner() {
+        if (gameStatus.gameStatus) { alert("The winner is " + gameStatus.winner) }
     }
 
     // predefined variables for the return.
@@ -118,15 +126,21 @@ export function PlayLudo() {
         <div>{newBoard ? (
             <div>
                 <div className="controls">
-                    <button className="startOver" onClick={() => StartLudo()}>restart Game</button>
-                    <div className="dice" ><img src={diceImage()} /></div>
+                    <button className="startOver" onClick={() => StartLudo()}>Restart game</button>
+                    <div className="dice"><img src={DiceImage()} /></div>
                     <button className="addPawn" onClick={() => PlacePawn()}>Place a pawn</button>
-                    <button className="movePawn" onClick={() => MovePawn(1)}>Move Pawn 1</button>
-                    <button className="movePawn" onClick={() => MovePawn(2)}>Move Pawn 2</button>
-                    <button className="movePawn" onClick={() => MovePawn(3)}>Move pawn 3</button>
-                    <button className="movePawn" onClick={() => MovePawn(4)}>move pawn 4</button>
+                    <button className="movePawn" onClick={() => MovePawn(1)}><img src={PawnOne} /></button>
+                    <button className="movePawn" onClick={() => MovePawn(2)}><img src={PawnTwo} /></button>
+                    <button className="movePawn" onClick={() => MovePawn(3)}><img src={PawnThree} /></button>
+                    <button className="movePawn" onClick={() => MovePawn(4)}><img src={PawnFour} /></button>
                 </div>
 
+                <div className="controls">
+                    <div className="scoreBoard">Score player one: {newBoard.playerOne.score}</div>
+                    <div className="scoreBoard">Score player two: {newBoard.playerTwo.score}</div>
+                    <div className="scoreBoard">Score player three: {newBoard.playerThree.score}</div>
+                    <div className="scoreBoard">Score player four: {newBoard.playerFour.score}</div>
+                </div>
 
                 <div className="textBox">The current player is: {activePlayer}</div>
                 <div className="textBox">Player one's pawns are at the following locations: {playerOnePawnOneLocation}, {playerOnePawnTwoLocation}, {playerOnePawnThreeLocation}, {playerOnePawnFourLocation}</div>
@@ -230,7 +244,7 @@ export function PlayLudo() {
                 </div>
             </div>)
             : <div className="controls">
-                <button className="startGame" onClick={() => StartLudo()}>start a new Game</button>
+                <button className="startGame" onClick={() => StartLudo()}>Start a new game</button>
             </div>}
         </div>
     )

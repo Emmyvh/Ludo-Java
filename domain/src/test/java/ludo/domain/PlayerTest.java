@@ -22,14 +22,14 @@ public class PlayerTest {
     @Test
     public void whenAplayerStartsTheyOccupyZeroSquares() {
         Player playerOne = new Player();
-        assertEquals(0, playerOne.getNumberOfSquaresOccupied());
+        assertEquals(0, playerOne.getPawnList().size());
     }
 
     @Test
     public void whenAPlayerPlaysAPawnTheyHaveOnePawn() {
         Player playerOne = new Player();
         playerOne.addPawn(0);
-        assertEquals(1, playerOne.getNumberOfSquaresOccupied());
+        assertEquals(1, playerOne.getPawnList().size());
         assertEquals(0, playerOne.getPawnList().get(0));
     }
 
@@ -38,7 +38,7 @@ public class PlayerTest {
         Player playerOne = new Player();
         playerOne.addPawn(0);
         playerOne.losePawn(0);
-        assertEquals(0, playerOne.getNumberOfSquaresOccupied());
+        assertEquals(0, playerOne.getPawnList().size());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class PlayerTest {
         playerOne.addPawn(2);
         playerOne.addPawn(3);
         playerOne.addPawn(4);
-        assertEquals(4, playerOne.getNumberOfSquaresOccupied());
+        assertEquals(4, playerOne.getPawnList().size());
         assertEquals(0, playerOne.getPawnList().get(0));
         assertEquals(1, playerOne.getPawnList().get(1));
         assertEquals(2, playerOne.getPawnList().get(2));
@@ -60,7 +60,7 @@ public class PlayerTest {
     public void whenPawnsAreLostSquaresOccupiedCannotGoBelowZero() {
         Player playerOne = new Player();
         playerOne.losePawn(0);
-        assertEquals(0, playerOne.getNumberOfSquaresOccupied());
+        assertEquals(0, playerOne.getPawnList().size());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class PlayerTest {
         playerOne.addPawn(0);
         playerOne.addPawn(1);
         playerOne.addPawn(2);
-        assertEquals(2, playerOne.getNumberOfSquaresOccupied());
+        assertEquals(2, playerOne.getPawnList().size());
         assertEquals(0, playerOne.getPawnList().get(0));
         assertEquals(1, playerOne.getPawnList().get(1));
     }

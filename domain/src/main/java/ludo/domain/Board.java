@@ -101,7 +101,7 @@ public class Board {
 
     public void removeOldPawn(int pawnNumber) {
         this.getField().get(indexOfOldSquare).removePawn();
-        this.getActivePlayer().losePawn(pawnNumber - 1);
+        this.getActivePlayer().losePawn(indexOfOldSquare);
     }
 
     public void pointCheck(int pawnNumber) {
@@ -134,7 +134,7 @@ public class Board {
 
     public void returnPawn(int pawnNumber) {
         this.getField().get(indexOfNewSquare).addPawn();
-        this.getActivePawnList().add(pawnNumber - 1, indexOfNewSquare);
+        this.getActivePlayer().addPawn(indexOfNewSquare);
     }
 
     public void checkForWinner() {
@@ -171,8 +171,12 @@ public class Board {
     }
 
     public void placeNewPawn() {
-        if (activePlayer.getNumberOfSquaresOccupied() + this.activePlayer.getScore() < 4
-                && !(this.getField().get(getIndexStartSquare()).isOccupied())) {
+        int index = getIndexStartSquare();
+        this.getPlayerOne().getPawnList().remove(Integer.valueOf(index));
+        this.getPlayerTwo().getPawnList().remove(Integer.valueOf(index));
+        this.getPlayerThree().getPawnList().remove(Integer.valueOf(index));
+        this.getPlayerFour().getPawnList().remove(Integer.valueOf(index));
+        if (activePlayer.getPawnList().size() + this.activePlayer.getScore() < 4) {
             this.getField().get(getIndexStartSquare()).addPawn();
             this.getActivePlayer().addPawn(getIndexStartSquare());
         }
