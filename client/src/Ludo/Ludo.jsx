@@ -85,7 +85,7 @@ export function PlayLudo() {
             console.error(error.toString());
         }
     }
-
+    //These functions manage images.
     function DiceImage() {
         let list = [One, Two, Three, Four, Five, Six]
         return list[newBoard.diceThrow - 1]
@@ -102,7 +102,7 @@ export function PlayLudo() {
             return P4Pawn;
         }
     }
-
+    // These functions manage the visibility of occupied squares.
     function occupiedSquare(fieldIndex) {
         if (newBoard.field[fieldIndex].occupied) {
             if (newBoard.playerOne.pawnList.includes(fieldIndex)) {
@@ -183,6 +183,7 @@ export function PlayLudo() {
         }
     }
 
+    //These functions are needed to help the player move their pawns.
     function PawnOne() {
         if (activePlayer == "player one") {
             return Number(newBoard.playerOne.pawnList[0]) + 1;
@@ -231,8 +232,13 @@ export function PlayLudo() {
         }
     }
 
-    function winner() {
-        if (gameStatus.gameStatus) { alert("The winner is " + gameStatus.winner) }
+    // This fuction declares the winner.
+    if (gameStatus) {
+        var winner = " ";
+        if (gameStatus.gameStatus) {
+            winner = "The winner is " + gameStatus.winner;
+            alert(winner);
+        }
     }
 
     // The layout of the board.
@@ -255,6 +261,9 @@ export function PlayLudo() {
                     <div className="scoreBoardThree">Score player three: {newBoard.playerThree.score}</div>
                     <div className="scoreBoardFour">Score player four: {newBoard.playerFour.score}</div>
                 </div>
+
+                <br></br>
+                <br></br>
 
                 <div className="box">
                     <div className={occSquareTwo(10)}>11</div>
