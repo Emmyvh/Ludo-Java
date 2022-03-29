@@ -10,6 +10,10 @@ import P1Pawn from "./P1Pawn.png";
 import P2Pawn from "./P2Pawn.png";
 import P3Pawn from "./P3Pawn.png";
 import P4Pawn from "./P4Pawn.png";
+import P1 from "./P1.png";
+import P2 from "./P2.png";
+import P3 from "./P3.png";
+import P4 from "./P4.png";
 
 export function PlayLudo() {
 
@@ -255,13 +259,6 @@ export function PlayLudo() {
                     <button className="movePawn" onClick={() => MovePawn(4)}><img src={pawnPicture()} /><br></br>{PawnFour()} </button>
                 </div>
 
-                <div className="controls">
-                    <div className="scoreBoardOne">Score player one: {newBoard.playerOne.score}</div>
-                    <div className="scoreBoardTwo">Score player two: {newBoard.playerTwo.score}</div>
-                    <div className="scoreBoardThree">Score player three: {newBoard.playerThree.score}</div>
-                    <div className="scoreBoardFour">Score player four: {newBoard.playerFour.score}</div>
-                </div>
-
                 <br></br>
                 <br></br>
 
@@ -272,9 +269,13 @@ export function PlayLudo() {
                 </div>
 
                 <div className="box">
+                    <div className="scoreBoardOne"><img src={P1} /> Score player one: {newBoard.playerOne.score}</div>
+                    <div className="filler"></div>
                     <div className={occupiedSquare(9)}>10</div>
                     <div className="filler"></div>
                     <div className={occupiedSquare(13)}>14</div>
+                    <div className="filler"></div>
+                    <div className="scoreBoardTwo">Score player two: {newBoard.playerTwo.score} <img src={P2} /></div>
                 </div>
 
                 <div className="box">
@@ -349,9 +350,13 @@ export function PlayLudo() {
                 </div>
 
                 <div className="box">
+                    <div className="scoreBoardFour"><img src={P4} /> Score player four: {newBoard.playerFour.score}</div>
+                    <div className="filler"></div>
                     <div className={occupiedSquare(33)}>34</div>
                     <div className="filler"></div>
                     <div className={occupiedSquare(29)}>30</div>
+                    <div className="filler"></div>
+                    <div className="scoreBoardThree">Score player three: {newBoard.playerThree.score} <img src={P3} /></div>
                 </div>
 
                 <div className="box">

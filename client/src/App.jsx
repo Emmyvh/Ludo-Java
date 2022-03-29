@@ -9,11 +9,9 @@ export function App() {
         < Router >
             <div>
                 <Header />
-                <Home />
-                <PlayLudo />
                 <Routes>
-                    <Route path='/' element={Home} />
-                    <Route path='/PlayLudo' element={PlayLudo} />
+                    <Route exact path='/' element={<Home />} />
+                    <Route path='/PlayLudo' element={<PlayLudo />} />
                 </Routes>
             </div>
         </Router >
