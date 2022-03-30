@@ -1,0 +1,6 @@
+CREATE TABLE Winner_Records
+(
+    Date NVARCHAR(50) PRIMARY KEY NOT NULL,
+    Time NVARCHAR(50) NOT NULL,
+    Winner NVARCHAR(50) NOT NULL
+)

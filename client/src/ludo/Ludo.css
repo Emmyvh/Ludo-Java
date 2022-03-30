@@ -71,61 +71,48 @@
     font-size: 1em;
     color: Black;
 }
-.scoreBoardOne {
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 1em;
-    color: Black;
-}
-
-.scoreBoardTwo {
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 1em;
-    color: Black;
-}
-
-.scoreBoardThree {
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 1em;
-    color: Black;
-}
-
-.scoreBoardFour {
+.scoreBoard {
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
 }
 
 .startSquareOne {
-    background-color: rgb(153, 76, 76);
+    display: flex;
+    background-color: rgb(231, 220, 122);
     padding:19px;
     border-radius: 50%;
+    border: rgb(153, 76, 76) solid;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
 }
 
 .startSquareTwo {
-    background-color: rgb(122, 173, 231);
+    background-color: rgb(231, 220, 122);
     padding:19px;
     border-radius: 50%;
+    border: rgb(122, 173, 231) solid;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
 }
 
 .startSquareThree {
-    background-color: rgb(9, 180, 137);
+    background-color: rgb(231, 220, 122);
     padding:19px;
     border-radius: 50%;
+    border: rgb(9, 180, 137) solid;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
 }
 
 .startSquareFour {
-    background-color: rgb(184, 176, 109);
+    background-color: rgb(231, 220, 122);
     padding:19px;
     border-radius: 50%;
+    border: rgb(184, 176, 109) solid;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
@@ -135,6 +122,7 @@
     background-color: rgb(231, 220, 122);
     padding:19px;
     border-radius: 50%;
+    border: rgb(231, 220, 122) solid;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
@@ -142,9 +130,10 @@
 
 .occupiedOne {
     display: flex;
-    background-color: rgb(90, 45, 45);
+    background-color: rgb(153, 76, 76);
     padding:19px;
     border-radius: 50%;
+    border: rgb(153, 76, 76) solid;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
@@ -152,9 +141,10 @@
 
 .occupiedTwo {
     display: flex;
-    background-color: rgb(83, 119, 160);
+    background-color: rgb(122, 173, 231);
     padding:19px;
     border-radius: 50%;
+    border: rgb(122, 173, 231) solid;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
@@ -162,9 +152,10 @@
 
 .occupiedThree {
     display: flex;
-    background-color: rgb(3, 100, 76);
+    background-color: rgb(9, 180, 137);
     padding:19px;
     border-radius: 50%;
+    border: rgb(9, 180, 137) solid ;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
@@ -172,9 +163,10 @@
 
 .occupiedFour {
     display: flex;
-    background-color: rgb(156, 149, 82);
+    background-color: rgb(184, 176, 109);
     padding:19px;
     border-radius: 50%;
+    border: rgb(184, 176, 109) solid ;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 1em;
     color: Black;
@@ -182,6 +174,7 @@
 
 .filler {
     padding:28px;
+    border: white solid;
 }
 
 .startGame {

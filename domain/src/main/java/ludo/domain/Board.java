@@ -176,10 +176,8 @@ public class Board {
         this.getPlayerTwo().getPawnList().remove(Integer.valueOf(index));
         this.getPlayerThree().getPawnList().remove(Integer.valueOf(index));
         this.getPlayerFour().getPawnList().remove(Integer.valueOf(index));
-        if (activePlayer.getPawnList().size() + this.activePlayer.getScore() < 4) {
-            this.getField().get(getIndexStartSquare()).addPawn();
-            this.getActivePlayer().addPawn(getIndexStartSquare());
-        }
+        this.getField().get(getIndexStartSquare()).addPawn();
+        this.getActivePlayer().addPawn(getIndexStartSquare());
     }
 
     public void makeMovePawn(int pawnNumber) {
