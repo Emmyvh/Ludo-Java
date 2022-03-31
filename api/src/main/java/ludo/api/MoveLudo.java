@@ -63,13 +63,16 @@ public class MoveLudo {
     }
 
     public void recordWinner(String date, String time, String winner) throws SQLException {
-        String url = "jdbc:sqlserver://sqlsrv\\sqlexpress;databaseName=Ludo_Winner_Database";
-        String user = "Emmy";
-        String password = "123";
-
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected successfully to database");
+            String dbURL = "jdbc:sqlserver://localhost\\sqlexpress";
+            String user = "emmy";
+            String pass = "123";
+            Connection connection = DriverManager.getConnection(dbURL, user, pass);
+            if (connection != null) {
+                System.out.println("Connected successfully to database");
+            } else {
+                System.out.println("Connected successfully to database");
+            }
 
             String sql = "INSERT INTO Winner_Records (Date, Time, Winner) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
