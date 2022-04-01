@@ -14,6 +14,7 @@ import ludo.domain.Board;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -64,32 +65,28 @@ public class MoveLudo {
 
     public void recordWinner(String date, String time, String winner) throws SQLException {
         try {
-            String dbURL = "jdbc:sqlserver://localhost\\sqlexpress";
-            String user = "emmy";
+            String dbURL = "jdbc:sqlserver://localhost\\sqlexpress;"
+                    + "databaseName=Ludo_Winner_Database;" +
+                    "encrypt=true;trustServerCertificate=true";
+            String user = "Emmy";
             String pass = "123";
             Connection connection = DriverManager.getConnection(dbURL, user, pass);
+
             if (connection != null) {
                 System.out.println("Connected successfully to database");
-            } else {
-                System.out.println("Connected successfully to database");
+                String sql = "INSERT INTO Winner_Records (Date, Time, Winner) VALUES (?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, date);
+                statement.setString(2, time);
+                statement.setString(3, winner);
+
+                var updateQuery = statement.execute();
             }
 
-            String sql = "INSERT INTO Winner_Records (Date, Time, Winner) VALUES (?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, date);
-            statement.setString(2, time);
-            statement.setString(3, winner);
-
-            int rows = statement.executeUpdate(sql);
-
-            if (rows > 0) {
-                System.out.println("Winner added succesfully");
-
-                connection.close();
-            }
+            connection.close();
 
         } catch (SQLException e) {
-            System.out.println("failed to connect to database. Location: MoveLudo.java");
+            System.out.println("error in database connection. Location: MoveLudo.java");
             e.printStackTrace();
         }
 

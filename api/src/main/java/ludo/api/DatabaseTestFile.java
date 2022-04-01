@@ -1,3 +1,5 @@
+package ludo.api;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -9,8 +11,9 @@ public class DatabaseTestFile {
         Connection conn = null;
 
         try {
-
-            String dbURL = "jdbc:sqlserver://localhost\\sqlexpress";
+            String dbURL = "jdbc:sqlserver://localhost\\sqlexpress;"
+                    + "databaseName=Ludo_Winner_Database;" +
+                    "encrypt=true;trustServerCertificate=true";
             String user = "Emmy";
             String pass = "123";
             conn = DriverManager.getConnection(dbURL, user, pass);

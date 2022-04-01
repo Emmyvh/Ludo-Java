@@ -7,7 +7,7 @@ Exact game rules can be found in the file: client/src/Home/Home.jsx
 
 ## Project structure
 The project consists of a working domain, API and client layer.
-Additionally a start has been made to connect a database (not currently functional).
+Additionally an option has been made to connect to a database (only functional if a database is present locally).
 
 ### Domain
 The domain layer contains the game logic in domain/src/main/java/ludo/domain.
@@ -50,14 +50,18 @@ Next they can navigate to PlayLudo.jsx.
 This page projects the game itself and lets four players play against one another.
 A navigation bar can finally be seen at the top of every page via Header.jsx.
 
-### Database (not necessary to play the game/ non functional at the moment)
+### Database (not necessary to play the game/ not functional if not present locally)
 A start has been made to connect this project to a database in MS SQL via its API layer.
 This database should register the date and time of each ended game in addition to its winner.
-This connection has not been finalised and currently does not work.
 
-Additionally it can only work if the database that is refered to is present on the machine that runs the project.
+This feature can only work if the database that is refered to is present on the machine that runs the project.
 To add a database on your local machine: download MS SQL and build a database in it.
 An example of the necessary SQL code can be found in the DatabaseSQLcode.SQL file.
-Next alter the url, user, and password variables in api/src/main/java/ludo/api/MoveLudo.java to the ones applicable to your machine's database.
-Upon declaring a winner the methods present in MoveLudo.java should then automatically open a connection to your new database and write down the current date, time and winner (not currently functional).
+Next alter the url, user, and password variables in api/src/main/java/ludo/api/MoveLudo.java to values applicable to your machine's database.
+You cannot use windows authentication for this, it must be a local account with reading and writing rights to the database.
+
+To test if your connection is successful you can use the DatabaseTestFile.java in api/src/main/java/ludo.
+Alter the url, user and password like described above and this file will return some statistics on the database upon successfull conntection.
+
+If a database is connected successfully, upon declaring a winner, MoveLudo.java should automatically open a connection to your new database and write down the current date, time and winner.
 After writing down the winner the connection is automatically closed again.
