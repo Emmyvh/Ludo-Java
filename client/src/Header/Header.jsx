@@ -9,6 +9,7 @@ export function Header() {
             <div className="navigation">
                 <Link to="/">Home</Link>
                 <Link to="/PlayLudo">Play Ludo</Link>
+                <Link to="/HallOfFame"> Hall of fame</Link>
             </div>
-        </header>)
+        </header >)
 }

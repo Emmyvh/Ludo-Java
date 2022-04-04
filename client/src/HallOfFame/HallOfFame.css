@@ -1,0 +1,42 @@
+.border {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 6px solid rgb(3, 100, 76);
+    border-radius: 0%;
+}
+
+.topper {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    color: rgb(9, 180, 137)
+}
+
+.text {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+.showFame {
+    background-color: rgb(9, 180, 137);
+    padding-top: 100px;
+    padding-bottom: 100px;
+    max-width: fit-content;
+    border-radius: 25%;
+    border-width: 0.25em;
+    border-color: rgb(9, 180, 137);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: white;
+}
