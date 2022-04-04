@@ -35,7 +35,7 @@ public class HallOfFame {
             if (connection != null) {
                 System.out.println("Connected successfully to database");
                 Statement statement = connection.createStatement();
-                String sql = "SELECT * FROM Winner_Records";
+                String sql = "SELECT TOP 10 * FROM Winner_Records ORDER BY Date DESC";
                 ResultSet updateQuery = statement.executeQuery(sql);
 
                 while (updateQuery.next()) {
