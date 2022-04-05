@@ -189,59 +189,58 @@ export function PlayLudo() {
 
     //These functions are needed to help the player move their pawns.
     function PawnOne() {
-        if (activePlayer == "player one") {
+        if (activePlayer == "player one" && newBoard.playerOne.pawnList[0] != null) {
             return Number(newBoard.playerOne.pawnList[0]) + 1;
-        } else if (activePlayer == "player two") {
+        } else if (activePlayer == "player two" && newBoard.playerTwo.pawnList[0] != null) {
             return Number(newBoard.playerTwo.pawnList[0]) + 1;
-        } else if (activePlayer == "player three") {
+        } else if (activePlayer == "player three" && newBoard.playerThree.pawnList[0] != null) {
             return Number(newBoard.playerThree.pawnList[0]) + 1;
-        } else if (activePlayer == "player four") {
+        } else if (activePlayer == "player four" && newBoard.playerFour.pawnList[0] != null) {
             return Number(newBoard.playerFour.pawnList[0]) + 1;
         }
     }
 
     function PawnTwo() {
-        if (activePlayer == "player one") {
+        if (activePlayer == "player one" && newBoard.playerOne.pawnList[1] != null) {
             return Number(newBoard.playerOne.pawnList[1]) + 1;
-        } else if (activePlayer == "player two") {
+        } else if (activePlayer == "player two" && newBoard.playerTwo.pawnList[1] != null) {
             return Number(newBoard.playerTwo.pawnList[1]) + 1;
-        } else if (activePlayer == "player three") {
+        } else if (activePlayer == "player three" && newBoard.playerThree.pawnList[1] != null) {
             return Number(newBoard.playerThree.pawnList[1]) + 1;
-        } else if (activePlayer == "player four") {
+        } else if (activePlayer == "player four" && newBoard.playerFour.pawnList[1] != null) {
             return Number(newBoard.playerFour.pawnList[1]) + 1;
         }
     }
 
     function PawnThree() {
-        if (activePlayer == "player one") {
+        if (activePlayer == "player one" && newBoard.playerOne.pawnList[2] != null) {
             return Number(newBoard.playerOne.pawnList[2]) + 1;
-        } else if (activePlayer == "player two") {
+        } else if (activePlayer == "player two" && newBoard.playerTwo.pawnList[2] != null) {
             return Number(newBoard.playerTwo.pawnList[2]) + 1;
-        } else if (activePlayer == "player three") {
+        } else if (activePlayer == "player three" && newBoard.playerThree.pawnList[2] != null) {
             return Number(newBoard.playerThree.pawnList[2]) + 1;
-        } else if (activePlayer == "player four") {
+        } else if (activePlayer == "player four" && newBoard.playerFour.pawnList[2] != null) {
             return Number(newBoard.playerFour.pawnList[2]) + 1;
         }
     }
 
     function PawnFour() {
-        if (activePlayer == "player one") {
+        if (activePlayer == "player one" && newBoard.playerOne.pawnList[3] != null) {
             return Number(newBoard.playerOne.pawnList[3]) + 1;
-        } else if (activePlayer == "player two") {
+        } else if (activePlayer == "player two" && newBoard.playerTwo.pawnList[3] != null) {
             return Number(newBoard.playerTwo.pawnList[3]) + 1;
-        } else if (activePlayer == "player three") {
+        } else if (activePlayer == "player three" && newBoard.playerThree.pawnList[3] != null) {
             return Number(newBoard.playerThree.pawnList[3]) + 1;
-        } else if (activePlayer == "player four") {
+        } else if (activePlayer == "player four" && newBoard.playerFour.pawnList[3] != null) {
             return Number(newBoard.playerFour.pawnList[3]) + 1;
         }
     }
 
     // This fuction declares the winner.
+    var winner;
     if (gameStatus) {
-        var winner = " ";
         if (gameStatus.gameStatus) {
-            winner = "The winner is " + gameStatus.winner;
-            alert(winner);
+            winner = gameStatus.winner;
         }
     }
 
@@ -260,6 +259,7 @@ export function PlayLudo() {
                 </div>
 
                 <br></br>
+                <div className="winnerMessage">{(winner != null) ? ("The winner is " + winner) : ""}</div>
                 <br></br>
 
                 <div className="box">
